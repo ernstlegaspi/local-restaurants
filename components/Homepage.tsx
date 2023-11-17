@@ -60,33 +60,36 @@ const Homepage = () => {
 	}, [])
 
 	return (
-		<div className="flex justify-evenly max-[815px]:flex-col max-[815px]:items-center">
-			{/* get all the states with the index number */}
-			{states.map((state, idx) => (
-				<div className="my-3" key={idx}>
-					{/* print the state */}
-					<p className="font-bold text-black/70">{state}</p>
-					<div className="flex flex-col">
-						{/* get all the restaurants per state with its index number */}
-						{restaurants?.map((restaurant, index) => idx === index ? (<>
-							{/* since it is a 2D array, another loop will be necessary to access per restaurant */}
-							{restaurant.map((val, i) => (
-								/*
-									replace all the spaces in the restaurants name and change it to -
-									now in the url, when clicked, the output should be
+		<>
+			<a className="inline-block text-black/70 mt-2 ml-[70px] underline text-sm max-[815px]:ml-0 max-[815px]:w-full max-[815px]:text-center" href="https://github.com/ernstlegaspi/local-restaurants" target="_blank" rel="noreferrer">Github Code</a>
+			<div className="flex justify-evenly max-[815px]:flex-col max-[815px]:items-center">
+				{/* get all the states with the index number */}
+				{states.map((state, idx) => (	
+					<div className="my-3" key={idx}>
+						{/* print the state */}
+						<p className="font-bold text-black/70">{state}</p>
+						<div className="flex flex-col">
+							{/* get all the restaurants per state with its index number */}
+							{restaurants?.map((restaurant, index) => idx === index ? (<>
+								{/* since it is a 2D array, another loop will be necessary to access per restaurant */}
+								{restaurant.map((val, i) => (
+									/*
+										replace all the spaces in the restaurants name and change it to -
+										now in the url, when clicked, the output should be
 
-									before: restaurant name 1
-									after: restaurant-name-1
-								*/
-								<Link key={i} href={`/state/${val.replaceAll(" ",  "-")}`}>
-									<p className="text-[10px] text-gray-500">- {val}</p>
-								</Link>
-							))}
-						</>) : null)}
+										before: restaurant name 1
+										after: restaurant-name-1
+									*/
+									<Link key={i} href={`/state/${val.replaceAll(" ",  "-")}`}>
+										<p className="text-[10px] text-gray-500">- {val}</p>
+									</Link>
+								))}
+							</>) : null)}
+						</div>
 					</div>
-				</div>
-			))}
-		</div>
+				))}
+			</div>
+		</>
 	)
 }
 
